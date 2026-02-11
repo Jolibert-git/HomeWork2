@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Homework2.Controllers
 {
-    [ApiController]
+    [ApiController]               //Normally I use [Controller], but in this code I prefer to use [ApiController]
+                                  // because with it I don't need to specify where the Post came from
     [Route("Api/MemberUsers")]
     public class MemberUserControllers: ControllerBase
     {
@@ -23,7 +24,7 @@ namespace Homework2.Controllers
         }
 
 
-        [HttpGet("{Id:int}")]
+        [HttpGet("{Id:int}")]   //A Get for specify Member with Api/MemberUsers/#x
         public async Task<ActionResult<MemberUser>> Get(int id)
         {
             var memberUser = await _DbContext.MemberUsers.FirstOrDefaultAsync(b => b.Id == id);
@@ -45,7 +46,7 @@ namespace Homework2.Controllers
         }
 
 
-        [HttpPut("{Id:int}")]
+        [HttpPut("{Id:int}")] //A Put for specify Member with Api/MemberUsers/#x
         public async Task<ActionResult> Put(int id, MemberUser memberUser)
         {
             if (id != memberUser.Id)
@@ -60,7 +61,7 @@ namespace Homework2.Controllers
 
 
 
-        [HttpDelete("{Id:int}")]
+        [HttpDelete("{Id:int}")] //A Delete for specify Member with Api/MemberUsers/#x
         public async Task<ActionResult> Delete(int id)
         {
             var result = await _DbContext.MemberUsers.Where(a => a.Id == id).ExecuteDeleteAsync();

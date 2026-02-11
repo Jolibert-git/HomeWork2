@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Homework2.Controllers
 {
-    [ApiController]
+    [ApiController]        //Normally I use [Controller], but in this code I prefer to use [ApiController]
+                           // because with it I don't need to specify where the Post came from
     [Route("Api/Authors")]
     public class AuthorControllers:ControllerBase
     {
@@ -25,7 +26,7 @@ namespace Homework2.Controllers
 
 
 
-        [HttpGet("{Id:int}")]
+        [HttpGet("{Id:int}")] //A Get for specify author with Api/Authors/#x
         public async Task<ActionResult<Author>> Get(int id)
         {
             var author = await _DbContext.Authors.FirstOrDefaultAsync(a => a.Id == id);
@@ -47,7 +48,7 @@ namespace Homework2.Controllers
         }
 
 
-        [HttpPut("{Id:int}")]
+        [HttpPut("{Id:int}")] //Update specify Author with Api/Authors/#x
         public async Task<ActionResult> Put(int id, Author author)
         {
             if(id != author.Id)
@@ -60,7 +61,7 @@ namespace Homework2.Controllers
             return Ok("Update Done Corretly");
         }
 
-        [HttpDelete("{Id:int}")]
+        [HttpDelete("{Id:int}")]   //Delete specify Author with Api/Authors/#x
         public async Task<ActionResult> Delete(int id)
         {
             var result = await _DbContext.Authors.Where(a => a.Id == id).ExecuteDeleteAsync();

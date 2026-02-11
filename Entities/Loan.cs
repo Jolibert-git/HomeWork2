@@ -17,7 +17,7 @@ namespace Homework2.Entities
         public LoanStatus Status { set; get; }
 
     }
-    public enum LoanStatus
+    public enum LoanStatus// It's limiter i prefer use enum instead of create class when is limiter contain
     {
         Pending = 1,
         Returned = 2,

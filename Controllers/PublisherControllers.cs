@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Homework2.Controllers
 {
-    [ApiController]
-    [Route("Api/Publisher")]
+    [ApiController]    //Normally I use [Controller], but in this code I prefer to use [ApiController]
+                       // because with it I don't need to specify where the Post came from
+
+    [Route("Api/Publishers")]
     public class PublisherControllers: ControllerBase
     {
         public readonly DataDbContext _DbContext;
@@ -22,8 +24,7 @@ namespace Homework2.Controllers
         }
 
 
-
-        [HttpGet("{Id:int}")]
+        [HttpGet("{Id:int}")]  //A Get for specify Publisher with Api/Publishers/#x
         public async Task<ActionResult<Publisher>> Get(int id)
         {
             var publisher = await _DbContext.Publishers.FirstOrDefaultAsync(a => a.Id == id);
@@ -45,7 +46,7 @@ namespace Homework2.Controllers
         }
 
 
-        [HttpPut("{Id:int}")]
+        [HttpPut("{Id:int}")]  //A Put for specify Publisher with Api/Publishers/#x
         public async Task<ActionResult> Put(int id, Publisher publisher)
         {
             if (id != publisher.Id)
@@ -58,7 +59,7 @@ namespace Homework2.Controllers
             return Ok("Update Done Corretly");
         }
 
-        [HttpDelete("{Id:int}")]
+        [HttpDelete("{Id:int}")] //A DElete for specify Publisher with Api/Publishers/#x
         public async Task<ActionResult> Delete(int id)
         {
             var result = await _DbContext.Publishers.Where(a => a.Id == id).ExecuteDeleteAsync();
