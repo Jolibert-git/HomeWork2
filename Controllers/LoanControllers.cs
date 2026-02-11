@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Homework2.Controllers
 {
-    [ApiController]
+    [ApiController]      //Normally I use [Controller], but in this code I prefer to use [ApiController]
+                         // because with it I don't need to specify where the Post came from
     [Route("Api/Loans")]
     public class LoanControllers: ControllerBase
     {
@@ -17,7 +18,7 @@ namespace Homework2.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet] 
         public async Task<List<Loan>> Gets()
         {
             return await _DbContext.Loans.ToListAsync<Loan>();
@@ -25,7 +26,7 @@ namespace Homework2.Controllers
 
 
 
-        [HttpGet("{Id:int}")]
+        [HttpGet("{Id:int}")]   //A Get for specify Loan with Api/Loans/#x
         public async Task<ActionResult<Loan>> Get(int id)
         {
             var loan = await _DbContext.Loans.FirstOrDefaultAsync(l => l.Id == id);
@@ -47,7 +48,7 @@ namespace Homework2.Controllers
         }
 
 
-        [HttpPut("{Id:int}")]
+        [HttpPut("{Id:int}")] //A put for specify Loan with Api/Loans/#x
         public async Task<ActionResult> Put(int id, Loan loan)
         {
             if (id != loan.Id)
@@ -60,7 +61,7 @@ namespace Homework2.Controllers
             return Ok("Update Done Corretly");
         }
 
-        [HttpDelete("{Id:int}")]
+        [HttpDelete("{Id:int}")] //A Delete for specify Loan with Api/Loans/#x
         public async Task<ActionResult> Delete(int id)
         {
             var result = await _DbContext.Loans.Where(a => a.Id == id).ExecuteDeleteAsync();

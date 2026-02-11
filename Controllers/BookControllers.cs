@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Homework2.Controllers
 {
     [ApiController]       
-    [Route("Api/Books")]
+    [Route("Api/Books")]//Normally I use [Controller], but in this code I prefer to use [ApiController]
+                        // because with it I don't need to specify where the Post came from
     public class BookControllers: ControllerBase
     {
         public readonly DataDbContext _DbContext;
@@ -25,7 +26,7 @@ namespace Homework2.Controllers
 
 
 
-        [HttpGet("{Id:int}")]
+        [HttpGet("{Id:int}")] //A Get for specify Book with Api/Authors/#x
         public async Task<ActionResult<Book>> Get(int id)
         {
             var book = await _DbContext.Books.FirstOrDefaultAsync(b => b.Id == id);
@@ -38,14 +39,14 @@ namespace Homework2.Controllers
             return book;
         }
 
-        [HttpPost]
+        [HttpPost] 
         public async Task<ActionResult> Post(Book book)
         {
-            if (book == null) return BadRequest("El objeto Book es nulo");
+            if (book == null) return BadRequest("The object book is null"); //I put it this condition because i had error amd wanna catch
 
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState); // Esto te dirá EXACTAMENTE qué campo está fallando
+                return BadRequest(ModelState); // Complement of condition  look for error expecific  
             }
 
             _DbContext.Add(book);
@@ -54,7 +55,7 @@ namespace Homework2.Controllers
         }
 
 
-        [HttpPut("{Id:int}")]
+        [HttpPut("{Id:int}")] //A put for specify Book with Api/Books/#x
         public async Task<ActionResult> Put(int id, Book book)
         {
             if (id != book.Id)
@@ -67,7 +68,7 @@ namespace Homework2.Controllers
             return Ok("Update Done Corretly");
         }
 
-        [HttpDelete("{Id:int}")]
+        [HttpDelete("{Id:int}")] //A Delete for specify book with Api/Books/#x
         public async Task<ActionResult> Delete(int id)
         {
             var result = await _DbContext.Books.Where(a => a.Id == id).ExecuteDeleteAsync();
