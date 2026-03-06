@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Homework2.DataAccess
 {
-    public class DataDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public DataDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -14,5 +14,6 @@ namespace Homework2.DataAccess
         public DbSet<Loan> Loans { set; get; }
         public DbSet<MemberUser> MemberUsers { set; get; }
         public DbSet<Publisher> Publishers { set; get; }
+        public DbSet<Comment> Comments { set; get; }
     }
 }

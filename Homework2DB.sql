@@ -13,6 +13,14 @@ CREATE TABLE Authors (
     Natinolity NVARCHAR(100) NOT NULL
 );
 
+CREATE TABLE Comments (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Body NVARCHAR(MAX) NOT NULL,
+    Date DATETIME NOT NULL DEFAULT GETDATE(),
+    BookId INT NOT NULL,
+    FOREIGN KEY (BookId) REFERENCES Books(Id)
+);
+
 
 CREATE TABLE MemberUsers (
     Id INT PRIMARY KEY IDENTITY(1,1),
@@ -85,3 +93,7 @@ VALUES ('Cien años de soledad', '1967-05-30', 471, 1, 'Editorial Sudamericana', 
 INSERT INTO Loans (UserId, BookId, LoanDate, DueDate, ReturnDate, RentalPrice, ReturnLate, TotalAmount, Status)
 VALUES (1, 1, GETDATE(), DATEADD(day, 7, GETDATE()), NULL, 50.00, 0.00, 50.00, 1);
 GO
+
+-- 1. Insertando con la fecha y hora de ahora mismo
+INSERT INTO Comments (Body, Date, BookId) 
+VALUES ('Este libro está muy interesante, recomendado.', GETDATE(), 1);
