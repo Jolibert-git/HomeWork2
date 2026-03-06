@@ -1,18 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Homework2.Entities
 {
-    public class Loan
+    public class Loan: IHasId
     {
         public int Id { set; get; }
-        [Required(ErrorMessage = "You need User for that accion")]
-        public required MemberUser User { set; get; }
+        [Required(ErrorMessage = "You need UserId for that accion")]
+        public int UserId { set; get; }
+        //public required MemberUser User { set; get; }
         public int BookId { set; get; }
         public DateTime? LoanDate { set; get; }
         public DateTime? DueDate { set; get; }
         public DateTime? ReturnDate { set; get; }
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? RentalPrice { set; get; }
+        [Column(TypeName = "decimal(18,2)")]
         public decimal ReturnLate { set; get; }
+        [Column(TypeName = "decimal(18,2)")]
         public decimal TotalAmount { set; get; }
         public LoanStatus Status { set; get; }
 

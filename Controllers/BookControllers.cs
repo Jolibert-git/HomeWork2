@@ -1,57 +1,74 @@
-﻿using Homework2.DataAccess;
+﻿using AutoMapper;
+using Homework2.DataAccess;
+using Homework2.DTOs;
 using Homework2.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Homework2.Controllers
 {
-    [ApiController]       
+    //[ApiController]       
     [Route("Api/Books")]//Normally I use [Controller], but in this code I prefer to use [ApiController]
                         // because with it I don't need to specify where the Post came from
-    public class BookControllers: ControllerBase
+    public class BookControllers: BaseController<Book,BookDTO>
     {
-        public readonly DataDbContext _DbContext;
-        public BookControllers(DataDbContext _DbContext)
+        public BookControllers(ApplicationDbContext context, ILogger<BookControllers> logger, IMapper mapper)
+            :base(mapper,logger,context)
         {
-            this._DbContext = _DbContext;
+        }
+
+        /*
+        public readonly ApplicationDbContext _DbContext;
+        public readonly ILogger<BookControllers> _logger;
+        public readonly IMapper _mapper;
+        public BookControllers(ApplicationDbContext DbContext, ILogger<BookControllers> logger, IMapper mapper)
+        {
+            this._DbContext = DbContext;
+            this._logger = logger;
+            this._mapper = mapper;
         }
 
 
 
         [HttpGet]
-        public async Task<List<Book>> Gets()
+        public async Task<IEnumerable<BookDTO>> Gets()
         {
-            return await _DbContext.Books.ToListAsync<Book>();
+            var book = await _DbContext.Books.ToListAsync<Book>();
+            var bookDTOs = _mapper.Map<IEnumerable<BookDTO>>(book);
+            
+            return bookDTOs;
         }
 
 
 
-        [HttpGet("{Id:int}")] //A Get for specify Book with Api/Authors/#x
-        public async Task<ActionResult<Book>> Get(int id)
+        [HttpGet("{Id:int}", Name = "GetBook")] //A Get for specify Book with Api/Authors/#x
+        public async Task<ActionResult<BookDTO>> Get(int id)
         {
             var book = await _DbContext.Books.FirstOrDefaultAsync(b => b.Id == id);
 
-            if (book is null)
+            var bookDTO = _mapper.Map<BookDTO>(book);
+
+            if (bookDTO is null)
             {
-                return BadRequest("Book doesn't exist");
+                return BadRequest("Book doesn't exist");//401
             }
 
-            return book;
+            return bookDTO;
         }
 
         [HttpPost] 
         public async Task<ActionResult> Post(Book book)
         {
-            if (book == null) return BadRequest("The object book is null"); //I put it this condition because i had error amd wanna catch
+            if (book == null) return BadRequest("The object book is null");//404 //I put it this condition because i had error amd wanna catch
 
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState); // Complement of condition  look for error expecific  
+                return BadRequest(ModelState);//401 // Complement of condition  look for error expecific  
             }
 
             _DbContext.Add(book);
             await _DbContext.SaveChangesAsync();
-            return Ok("Book Creado");
+            _logger.LogInformation("Book created");
+            return CreatedAtRoute("GetBook", new {Id = book.Id}, book);//201
         }
 
 
@@ -60,7 +77,7 @@ namespace Homework2.Controllers
         {
             if (id != book.Id)
             {
-                return BadRequest("The Ids not match");
+                return BadRequest("The Ids not match");//401
             }
 
             _DbContext.Update(book);
@@ -71,14 +88,18 @@ namespace Homework2.Controllers
         [HttpDelete("{Id:int}")] //A Delete for specify book with Api/Books/#x
         public async Task<ActionResult> Delete(int id)
         {
-            var result = await _DbContext.Books.Where(a => a.Id == id).ExecuteDeleteAsync();
+            var book = _DbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (result == 0)
+            if (book is null)
             {
-                return NotFound("Not Found some book With Id");
+                return NotFound("Not Found some book With Id");//404
             }
 
-            return Ok("Book Deleted Correctly");
+            var result = await _DbContext.Books.Where(a => a.Id == id).ExecuteDeleteAsync();
+            _logger.LogInformation("Book Deleted");
+
+            return CreatedAtRoute("GetBook", new { id = book.Id }, book);//201
         }
+        */
     }
 }

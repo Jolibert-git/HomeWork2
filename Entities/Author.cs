@@ -2,7 +2,7 @@
 
 namespace Homework2.Entities
 {
-    public class Author
+    public class Author: IHasId
     {
         public int Id { set; get; }
         [Required(ErrorMessage = "You need Name")]

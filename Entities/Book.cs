@@ -7,7 +7,7 @@ using System.Security.Principal;
 
 namespace Homework2.Entities
 {
-    public class Book
+    public class Book: IHasId
     {
         public int Id { set; get; }
         [Required(ErrorMessage = "The Title is mandatory")]
@@ -22,7 +22,11 @@ namespace Homework2.Entities
         //[ForeignKey("WriterId")]= = = = = = = = = I put it this because give me error when i used [Controller] and not [ApiController] now i can delete
         public Author? Writer { get; set; } 
         public bool IsActive { set; get; }
+        public List<Comment> Comments { set; get;} = [];
+
     }
+
+
     public enum BookCategory // I prefer create enum because Geren is limiter 
     {
         Fiction = 1,
