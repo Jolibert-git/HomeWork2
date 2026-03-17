@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36109.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2", "Homework2\Homework2.csproj", "{6D5BF625-8A3D-4D81-B2A1-A13B113D93A0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2.Domain", "Homework2.Domain\Homework2.Domain.csproj", "{A1D00BEB-FBD1-4BBA-AAF1-A3ECF27282D9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{28B0126F-D963-4731-85C1-B00FFE4C418B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2.Infrastructur", "Homework2.Infrastructur\Homework2.Infrastructur.csproj", "{A6F21BA8-9A8D-4D17-B0F2-BBB8AF44C827}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{14B49ECF-60BC-4A45-85CB-117D972C16E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2.Persistences", "Homework2.Persistence\Homework2.Persistences.csproj", "{75E80E87-4427-4AF5-9DF1-E6716C0FED57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2.Application", "Business\Homework2.Application\Homework2.Application.csproj", "{17A26C4E-BF70-1DED-5764-A820ECD7B9CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2.Domain", "Data\Homework2.Domain\Homework2.Domain.csproj", "{110AE264-D5BB-0DE4-8110-47B4060FC1F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2.Infrastructur", "Data\Homework2.Infrastructur\Homework2.Infrastructur.csproj", "{0811970C-40C6-B105-6AE5-525D06C54B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2.Persistences", "Data\Homework2.Persistence\Homework2.Persistences.csproj", "{8C5FDCBC-87B3-A582-2D6A-E6937C747975}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2", "Presantation\Homework2\Homework2.csproj", "{8DEB5EF0-B8D0-527C-18F5-A0AF20806274}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,25 +25,36 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6D5BF625-8A3D-4D81-B2A1-A13B113D93A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D5BF625-8A3D-4D81-B2A1-A13B113D93A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D5BF625-8A3D-4D81-B2A1-A13B113D93A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D5BF625-8A3D-4D81-B2A1-A13B113D93A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1D00BEB-FBD1-4BBA-AAF1-A3ECF27282D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1D00BEB-FBD1-4BBA-AAF1-A3ECF27282D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1D00BEB-FBD1-4BBA-AAF1-A3ECF27282D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1D00BEB-FBD1-4BBA-AAF1-A3ECF27282D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A6F21BA8-9A8D-4D17-B0F2-BBB8AF44C827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6F21BA8-9A8D-4D17-B0F2-BBB8AF44C827}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6F21BA8-9A8D-4D17-B0F2-BBB8AF44C827}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6F21BA8-9A8D-4D17-B0F2-BBB8AF44C827}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75E80E87-4427-4AF5-9DF1-E6716C0FED57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75E80E87-4427-4AF5-9DF1-E6716C0FED57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75E80E87-4427-4AF5-9DF1-E6716C0FED57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75E80E87-4427-4AF5-9DF1-E6716C0FED57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17A26C4E-BF70-1DED-5764-A820ECD7B9CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17A26C4E-BF70-1DED-5764-A820ECD7B9CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17A26C4E-BF70-1DED-5764-A820ECD7B9CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17A26C4E-BF70-1DED-5764-A820ECD7B9CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{110AE264-D5BB-0DE4-8110-47B4060FC1F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{110AE264-D5BB-0DE4-8110-47B4060FC1F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{110AE264-D5BB-0DE4-8110-47B4060FC1F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{110AE264-D5BB-0DE4-8110-47B4060FC1F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0811970C-40C6-B105-6AE5-525D06C54B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0811970C-40C6-B105-6AE5-525D06C54B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0811970C-40C6-B105-6AE5-525D06C54B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0811970C-40C6-B105-6AE5-525D06C54B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5FDCBC-87B3-A582-2D6A-E6937C747975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5FDCBC-87B3-A582-2D6A-E6937C747975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5FDCBC-87B3-A582-2D6A-E6937C747975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5FDCBC-87B3-A582-2D6A-E6937C747975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DEB5EF0-B8D0-527C-18F5-A0AF20806274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DEB5EF0-B8D0-527C-18F5-A0AF20806274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DEB5EF0-B8D0-527C-18F5-A0AF20806274}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DEB5EF0-B8D0-527C-18F5-A0AF20806274}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{17A26C4E-BF70-1DED-5764-A820ECD7B9CA} = {14B49ECF-60BC-4A45-85CB-117D972C16E9}
+		{110AE264-D5BB-0DE4-8110-47B4060FC1F1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{0811970C-40C6-B105-6AE5-525D06C54B8B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{8C5FDCBC-87B3-A582-2D6A-E6937C747975} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{8DEB5EF0-B8D0-527C-18F5-A0AF20806274} = {28B0126F-D963-4731-85C1-B00FFE4C418B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBD80A86-A24A-4649-9DD5-2EEED154FA30}
