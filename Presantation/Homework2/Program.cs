@@ -55,9 +55,9 @@ namespace Homework2
 
             //zone MidleWares
 
-            //app.UseLoggerRequest();
+            app.UseLoggerRequest();
 
-            //app.UseLoggerAccess();
+            app.UseLoggerAccess();
 
             //Controller
             app.MapControllers();

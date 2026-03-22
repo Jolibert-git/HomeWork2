@@ -30,7 +30,8 @@ namespace Homework2.Application.Services
         {
             var author = await _work.Author.GetAuthorBooks(id);//select Author with him books 
 
-            if (author == null) return ApiResponses<AuthorWithBooksDTO>.ErrorResponse("This author doesn't exist", 404); ;
+            if (author == null) 
+                return ApiResponses<AuthorWithBooksDTO>.ErrorResponse("This author doesn't exist", 404); ;
 
             var dto = _mapper.Map<AuthorWithBooksDTO>(author);
 
@@ -43,10 +44,9 @@ namespace Homework2.Application.Services
         {
             // 1. Buscamos la entidad original
             var author = await _work.Author.GetAsync(id);
-            if (author == null)
-            {
-                return ApiResponses<AuthorPatchDTO>.ErrorResponse($"Autor con id {id} no encontrado", 404);
-            }
+            if (author is null)
+                  return ApiResponses<AuthorPatchDTO>.ErrorResponse($"Autor con id {id} no encontrado", 404);
+            
 
             // 2. Mapeamos a DTO
             var authorPatchDto = _mapper.Map<AuthorPatchDTO>(author);
@@ -56,9 +56,8 @@ namespace Homework2.Application.Services
 
             // 4. Validamos los datos parcheados
             if (!modelState.IsValid)
-            {
                 return ApiResponses<AuthorPatchDTO>.ErrorResponse("Error en la validación de los datos", 400);
-            }
+            
 
             // 5. Mapeamos de vuelta a la entidad original y guardamos
             _mapper.Map(authorPatchDto, author);

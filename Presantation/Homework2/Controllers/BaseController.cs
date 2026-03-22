@@ -24,7 +24,8 @@ namespace Homework2.Controllers
         {
             var responses = await _services.GetAllEntityAsync();
 
-            if (!responses.Success) return BadRequest("Error with null value ");
+            if (!responses.Success) 
+                return BadRequest("Error with null value ");
 
             return Ok(responses);
         }
@@ -35,11 +36,9 @@ namespace Homework2.Controllers
             var response = await _services.GetEntityByIdAsync(id);//GetAsync(id);//_context.Set<TEntities>().FirstOrDefaultAsync(v => v.Id == id);
            
             if(!response.Success)
-            {
-                return NotFound(response);//404
-            }
-
-            return Ok(response);
+                 return NotFound(response);//404
+            
+            return Ok(response);//200
         }
 
         [HttpPost]
@@ -47,7 +46,8 @@ namespace Homework2.Controllers
         {
             var response = await _services.PostEntityAsync(entity);
 
-            if (!response.Success) return BadRequest(response);
+            if (!response.Success) 
+                return BadRequest(response);
 
             return CreatedAtAction("Get", new { id = entity.Id }, response); //201    
         }
@@ -59,7 +59,7 @@ namespace Homework2.Controllers
                 return BadRequest($"Propierty not match with Ids: {id}");//401
             
 
-            var response = await _services.UpdateEntityAsync(id,entity);//UpdateAsync(id,entity);
+            var response = await _services.UpdateEntityAsync(id,entity);
 
             if (response.Success)
                 return NotFound(response);
@@ -70,12 +70,11 @@ namespace Homework2.Controllers
         [HttpDelete("{Id:int}")]
         public async Task<ActionResult<ApiResponses<TDTO>>> DeleteAsync(int id)
         {
-            var response = await _services.DeleteEntityAsync(id);//DeleteAsync(id);//_context.Set<TEntities>().Where(e => e.Id == id).ExecuteDeleteAsync();
+            var response = await _services.DeleteEntityAsync(id);
 
             if (!response.Success)
-            {
-                return NotFound($"Not found entity with Id: {response}");//404
-            }
+                 return NotFound($"Not found entity with Id: {response}");//404
+            
 
             return Ok(response);//200
         }

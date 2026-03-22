@@ -26,7 +26,8 @@ namespace Homework2.Application.Services
         {
             var comments = await _work.Comment.SearchInComments(keyWord); //select comment with specific word
 
-            if (comments is null || !comments.Any()) return ApiResponses<List<CommentDTO>>.ErrorResponse($"Don't found comments with {keyWord}");
+            if (comments is null || !comments.Any()) 
+                return ApiResponses<List<CommentDTO>>.ErrorResponse($"Don't found comments with {keyWord}");
 
             var commentsDTO = _mapper.Map<List<CommentDTO>>(comments);
 
@@ -38,9 +39,8 @@ namespace Homework2.Application.Services
             
             var comment = await _work.Comment.GetAsync(id);
             if (comment == null)
-            {
-                return ApiResponses<CommentBodyDTO>.ErrorResponse($"Comentario con id {id} no encontrado", 404);
-            }
+                  return ApiResponses<CommentBodyDTO>.ErrorResponse($"Comentario con id {id} no encontrado", 404);
+            
 
             
             var commentDTO = _mapper.Map<CommentDTO>(comment);
@@ -51,9 +51,8 @@ namespace Homework2.Application.Services
 
             
             if (!modelState.IsValid)
-            {
-                return ApiResponses<CommentBodyDTO>.ErrorResponse("Error en la validación del parche", 400);
-            }
+                 return ApiResponses<CommentBodyDTO>.ErrorResponse("Error en la validación del parche", 400);
+            
 
             
             _mapper.Map(commentPatchDTO, commentDTO);

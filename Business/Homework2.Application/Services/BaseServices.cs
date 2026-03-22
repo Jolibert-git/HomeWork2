@@ -45,9 +45,8 @@ namespace Homework2.Application.Services
             var variebleDTO = _mapper.Map<TDTO>(varieble);
 
             if (variebleDTO is null)
-            {
-                return ApiResponses<TDTO>.ErrorResponse($"Propierty not found with Id: {id}");
-            }
+                 return ApiResponses<TDTO>.ErrorResponse($"Propierty not found with Id: {id}");
+            
 
             return ApiResponses<TDTO>.SuccessResponse(variebleDTO," found secessfull");
         }

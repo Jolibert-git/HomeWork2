@@ -24,7 +24,8 @@ namespace Homework2.Controllers
         {
             var responses = await _authorService.GetAuthorWithBooksAsync(id);//select Author with him books 
 
-            if (!responses.Success) return NotFound($"this author doesn't exist {responses}");
+            if (!responses.Success) 
+                return NotFound($"this author doesn't exist {responses}");
 
             return Ok(responses);
         }
@@ -36,15 +37,15 @@ namespace Homework2.Controllers
         public async Task<ActionResult<ApiResponses<AuthorPatchDTO>>> Patch(int id, JsonPatchDocument<AuthorPatchDTO> patchDoc)
         {
 
-            if (patchDoc == null) return BadRequest("El documento de parche no puede ser nulo");
+            if (patchDoc is null) 
+                return BadRequest("El documento de parche no puede ser nulo");
 
           
             var response = await _authorService.PatchAuthorAsync(id, patchDoc, ModelState);
 
             if (!response.Success)
-            {
-                return response.StatusCode == 404 ? NotFound(response) : BadRequest(response);
-            }
+                 return response.StatusCode == 404 ? NotFound(response) : BadRequest(response);
+            
 
             return Ok(response);
 
@@ -85,8 +86,8 @@ namespace Homework2.Controllers
 
 
 //---------------------------------------------
-//That's how I had it before using BaseController
-//---------------------------------------------
+//That's how I had it before using BaseController and layer aquitecture 
+
 
 
 

@@ -24,9 +24,9 @@ namespace Homework2.Controllers
             var responses = await _memberUserServices.GetActiveMembersAsync();//select MemberUser that are active
 
             if (!responses.Success) 
-                return NotFound(responses);
+                return NotFound(responses);//404
 
-            return Ok(responses);
+            return Ok(responses);//200
         }
     }
 

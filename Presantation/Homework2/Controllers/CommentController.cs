@@ -27,7 +27,7 @@ namespace Homework2.Controllers
             var responses = await _commentServices.SearchInCommentsAsync(keyWord); //select comment with specific word
 
             if (!responses.Success) 
-                return NotFound($"Don't found comments with {keyWord}");
+                return NotFound($"Don't found comments with {keyWord}");//404
 
 
             return Ok(responses);//200
@@ -37,16 +37,16 @@ namespace Homework2.Controllers
         [HttpPatch("{id:int}")]
         public async Task<ActionResult> Patch(int id, JsonPatchDocument<CommentBodyDTO> patchDoc)
         {
-            if (patchDoc == null) return BadRequest("El documento de parche no puede ser nulo");
+            if (patchDoc is null) 
+                return BadRequest("El documento de parche no puede ser nulo");
 
             var response = await _commentServices.PatchCommentAsync(id, patchDoc, ModelState);
 
             if (!response.Success)
-            {
                 return response.StatusCode == 404 ? NotFound(response) : BadRequest(response);
-            }
+            
 
-            return Ok(response);
+            return Ok(response);//200
 
         }
     }
